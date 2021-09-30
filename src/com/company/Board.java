@@ -18,6 +18,7 @@ public class Board {
     public void initializeBoard() {
         // Initialize pawns
         for (int i = 0; i <= 7; i++) {
+
             board[i][1] = this.black.pawns[i];
             board[i][6] = this.white.pawns[i];
         }
@@ -65,6 +66,7 @@ public class Board {
         System.out.println("\n");
         for (int i = 0; i <= 7; i++) {
             System.out.print("|"+(i+1)+"|  ");
+
             for (int j = 0; j <= 7; j++) {
                 if (board[j][i] != null) {
                     if (board[j][i].owner.isWhite) {
@@ -72,7 +74,6 @@ public class Board {
                     } else {
                         System.out.print(" "+ board[j][i].symbol + " ");
                     }
-
                 } else {
                     System.out.print(" -  ");
                 }
@@ -132,6 +133,9 @@ public class Board {
         }
     }
 
+    public int getTurn() {
+        return turn;
+    }
 }
 
 

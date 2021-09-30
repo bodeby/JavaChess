@@ -7,7 +7,7 @@ public class Game {
     public void startGame() {
         // write your code here
         System.out.println("Welcome to MHFs Awesome Chess");
-
+        Player testPlayer = new Player(true);
         // Create Board and Game functions
         Board gameBoard = new Board();
 
@@ -20,6 +20,17 @@ public class Game {
 
         // Game loop
         while(gameBoard.isGameOver() == false) {
+
+            System.out.println(gameBoard.board[1][1].getPos_x());
+            System.out.println(gameBoard.board[1][1].getPos_y());
+
+            gameBoard.board[1][1].setPos_x(3);
+            gameBoard.board[1][1].setPos_y(3);
+
+            gameBoard.board[1][2] = gameBoard.board[1][1];
+            gameBoard.board[1][1] = null;
+
+
             // Print Current Positions
             gameBoard.printBoard();
 
