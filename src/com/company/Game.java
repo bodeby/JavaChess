@@ -45,34 +45,44 @@ public class Game {
             if (this.isWhiteTurn()) {
                 // Get User Input
                 char[] turnInstructions = getUserInput(true);
-                //gameBoard.white.makeMove(turnInstructions);
-                int x1 = turnInstructions[0];
-                int y1 = turnInstructions[2];
-                int x2 = turnInstructions[4];
-                int y2 = turnInstructions[6];
-
-                Move turnMove = new Move(this.white, gameBoard.getTile(x1,y1), gameBoard.getTile(x2, y2));
-
-                if (turnMove.checkMove()) {
-                    if (turnMove.finalizeMove()) {
-                        this.currentTurn++;
-                    }
-                } else {
-                    System.out.println("Invalid move");
-                }
-            } else {
-                // Get User Input
-                char[] turnInstructions = getUserInput(false);
-                //gameBoard.black.makeMove(turnInstructions);
 
                 int x1 = Character.getNumericValue(turnInstructions[0]);
                 int y1 = Character.getNumericValue(turnInstructions[2]);
                 int x2 = Character.getNumericValue(turnInstructions[4]);
                 int y2 = Character.getNumericValue(turnInstructions[6]);
 
-                for (int i = 0; i < turnInstructions.length; i++) {
-                    System.out.println(turnInstructions[i]);
+                System.out.println("start_x " + x1);
+                System.out.println("start_y " + y1);
+
+                System.out.println("end_x " + x2);
+                System.out.println("end_y " + y2);
+
+
+                Move turnMove = new Move(this.white, gameBoard.getTile(x1,y1), gameBoard.getTile(x2, y2));
+
+                System.out.println("start_x " + turnMove.getStart().getX());
+                System.out.println("start_y " + turnMove.getStart().getY());
+
+                System.out.println("end_x " + turnMove.getEnd().getX());
+                System.out.println("end_y " + turnMove.getEnd().getY());
+
+                if (turnMove.checkMove()) {
+                    if (turnMove.finalizeMove()) {
+                        this.currentTurn++;
+                    }
+                } else {
+                    this.currentTurn++;
+                    System.out.println("Invalid move");
                 }
+
+            } else {
+                // Get User Input
+                char[] turnInstructions = getUserInput(false);
+
+                int x1 = Character.getNumericValue(turnInstructions[0]);
+                int y1 = Character.getNumericValue(turnInstructions[2]);
+                int x2 = Character.getNumericValue(turnInstructions[4]);
+                int y2 = Character.getNumericValue(turnInstructions[6]);
 
                 Move turnMove = new Move(this.black, gameBoard.getTile(x1,y1), gameBoard.getTile(x2, y2));
 
@@ -135,8 +145,6 @@ public class Game {
                 char[] moveSet = userSelection.toCharArray();
                 return moveSet;
             } else {
-                char[] moveSet = userSelection.toCharArray();
-                System.out.println(moveSet);
                 return "Could not read input".toCharArray();
             }
     }
@@ -172,7 +180,7 @@ public class Game {
         // Calculate Winning Score
         int winningScore = Math.abs(this.white.getScore()-this.black.getScore());
 
-        // Return wether White or black is winning.
+        // Return White or black is currently winning.
         if (this.white.getScore() > this.black.getScore()) {
             System.out.println("White is currently winning with "+  winningScore +" points");
         } else if (this.black.getScore() > this.white.getScore()) {

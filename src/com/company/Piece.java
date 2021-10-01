@@ -29,15 +29,20 @@ public class Piece {
 
     // Checks
     public boolean isValidKnightMove(int x1, int y1, int x2, int y2){
-        if((x1 == x2) && (y1 == y2)){return false;}
-        if(Math.sqrt( Math.pow((x1-x2),2)+Math.pow((y1-y2),2) ) == Math.sqrt(5)){
+        System.out.println(x1);
+        System.out.println(y1);
+        System.out.println(x2);
+        System.out.println(y2);
+        System.out.println(Math.pow((x1-x2),2)+Math.pow((y1-y2),2));
+        if( Math.pow((x1-x2),2)+Math.pow((y1-y2),2) == 5){
             return true;
+        } else {
+            return false;
         }
-        else{return false;}
     }
 
     public boolean isValidKingMove(int x1, int y1, int x2, int y2){
-        if((x1 == x2) && (y1 == y2)){return false;}
+
         if(Math.sqrt( Math.pow((x1-x2),2)+Math.pow((y1-y2),2) ) <= Math.sqrt(2)){
             return true;
         }
@@ -45,7 +50,6 @@ public class Piece {
     }
 
     public boolean isValidRookMove(int x1, int y1, int x2, int y2){
-        if((x1 == x2) && (y1 == y2)){return false;}
         int scenario = 1;
         switch(scenario){
             case 1:
